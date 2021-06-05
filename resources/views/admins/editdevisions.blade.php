@@ -1,0 +1,52 @@
+@extends('Layouttemp.template')
+
+@section('page-header')
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Ubah Bagian</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/devisions">Data Bagian</a></li>
+                    <li class="breadcrumb-item"><a>Ubah Bagian</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+@endsection
+
+@section('content')
+<!-- Main content-->
+<section class="container-fluid">
+    <!-- Form Element sizes -->
+    <div class="card card-blue">
+        <div class="card-header">
+            <h3 class="card-title">Ubah Bagian Satuan Tanaman</h3>
+        </div>
+        <div class="card-body">
+            <form method="post" action="/devisions/{{$devisions->id}}">
+                @method('patch')
+                @csrf
+                <div class="form-group">
+                    <label for="bagian">Bagians</label>
+                    <input type="text" class="form-control @error('bagian') is-invalid @enderror" id="bagian" name="bagian"
+                        value="{{$devisions->bagian}}" placeholder="Masukan bagiab admin" disabled>
+                    @error('bagian')<div class="invalid-feedback">{{$message}}</div>@enderror
+                </div>
+                <div class="form-group">
+                    <label for="gaji">Gaji</label>
+                    <input type="text" class="form-control @error('gaji') is-invalid @enderror" id="gaji" name="gaji"
+                        value="{{$devisions->gaji}}" placeholder="Masukan gaji admin">
+                    @error('gaji')<div class="invalid-feedback">{{$message}}</div>@enderror
+                </div>
+                <button type="submit" class="btn btn-primary">Simpan Data</button>
+            </form>
+        </div>
+        <!-- /.card-body -->
+    </div>
+</section>
+@endsection
