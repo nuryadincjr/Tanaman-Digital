@@ -15,8 +15,7 @@ fiturs:
 -   Daftar Users
 
 Bags:
-
--   Pagenations over layout
 -   another bag
+-   
 # tes
 # Tanaman-Digital
