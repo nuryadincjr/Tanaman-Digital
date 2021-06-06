@@ -24,6 +24,14 @@
       </ul>
       @if (auth()->user()==true)
       <ul class="navbar-nav flex-row flex-wrap ms-md-auto justify-content-end">
+        <div class="notification-icon">
+          <span class="glyphicon glyphicon-envelope"></span>
+          @if ($cartcount>=100)
+          <span class="badge">100+</span>
+          @else
+          <span class="badge">{{$cartcount}}</span>
+          @endif
+        </div>
         <li class="nav-item col-6 col-md-auto">
           <a class="nav-link" href="/cart"><i class="bi bi-cart-fill"></i>
             <img src="{{asset('img/cart.png')}}" alt="" width="24" height="24">

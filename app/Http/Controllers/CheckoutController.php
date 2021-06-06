@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class CartsController extends Controller
+class CheckoutController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +19,10 @@ class CartsController extends Controller
     {
 
         $users = Auth::user()->id;
+        $user = Auth::user();
         $cartcount = Carts::where('users_id', $users)->count();
         $carts = Carts::with('users', 'inventories.types', 'inventories.units')->where('users_id',$users)->get();
-        return view('shops.chart', ['carts' => $carts, 'cartcount' => $cartcount]);
+        return view('shops.checkout', ['carts' => $carts, 'cartcount' => $cartcount, 'users' => $user]);
     }
 
     /**
@@ -56,7 +57,7 @@ class CartsController extends Controller
             ]);
         }
 
-        return redirect('/shop')->with('status', 'Berhasil ditambakan kekeranjang!');
+        return redirect('/checkout')->with('status', 'Berhasil ditambakan kekeranjang!');
     }
 
     /**
@@ -103,7 +104,7 @@ class CartsController extends Controller
     {
         Carts::destroy($id);
 
-        return redirect('/cart')->with('status', 'Berhasil ditambakan kekeranjang!');
+        return redirect('/checkout')->with('status', 'Berhasil ditambakan kekeranjang!');
     }
 
 

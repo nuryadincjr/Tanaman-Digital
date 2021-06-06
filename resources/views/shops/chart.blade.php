@@ -1,22 +1,19 @@
 @extends('shoptamp.template')
 
 @section('content')
-<section class="content-header bg-light">
+<section class="content-header bg-while">
     <main class="container">
-        <div class="p-4 p-md-5 mt-4 mb-5 rounded bg-while">
-            <div class="col-md-6 px-0">
-                <h1 class="display-4 fst-italic">Keranjang</h1>
-                <p class="lead my-3">Bersihkan keranjangmu dangan chackout sekarang juga!</p>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                    <li class="breadcrumb-item"><a>Cart</a></li>
-                </ol>
-            </div>
+        <div class="container-fluid">
+            <h1 class="display-4 fst-italic">Keranjang</h1>
+            <p class="lead my-3">Bersihkan keranjangmu dangan chackout sekarang juga!</p>
+        
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                <li class="breadcrumb-item"><a>Cart</a></li>
+            </ol>
         </div>
 
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <aside class="col-lg-9">
                     <div class="card">
@@ -27,6 +24,7 @@
                                         <th scope="col">Barang</th>
                                         <th scope="col" width="120">Kuantitas</th>
                                         <th scope="col" width="120">Harga</th>
+                                        <th scope="col" width="120">Sub total</th>
                                         <th scope="col" class="text-right d-none d-md-block" width="200"></th>
                                     </tr>
                                 </thead>
@@ -38,24 +36,35 @@
                                                 <div class="aside"><img
                                                         src="data:image/png;base64,{{$c->inventories->photo1}}"
                                                         class="img-sm"></div>
-                                                <figcaption class="info"> <a href="#" class="title text-dark"
+                                                <figcaption class="info"> <a href="/detail/{{$c->inventories->id}}"
+                                                        class="title text-dark"
                                                         data-abc="true">{{$c->inventories->nama}}</a>
                                                     <p class="text-muted small">Jenis: {{$c->inventories->types->jenis}}
                                                         <br> Unit: {{$c->inventories->units->unit}}</p>
                                                 </figcaption>
                                             </figure>
                                         </td>
-                                        <td>
-                                            
-                                    <div class="add_row">
-                                        
-                                        
 
-                                    </div>
+                                        <td class="cart-product-quantity" width="130px">
+                                            <div class="input-group quantity">
+                                                <div class="input-group-prepend decrement-btn" style="cursor: pointer;">
+                                                    <span class="input-group-text" wire:click.prevent="incresaseQty('{{$c->id}}')">-</span>
+                                                </div>
+                                                <input type="text" class="qty-input form-control" maxlength="3" max='10'
+                                                    value="1">
+                                                <div class="input-group-append increment-btn" style="cursor: pointer;">
+                                                    <span class="input-group-text" wire:click.prevent="desresaseQty('{{$c->id}}')">+</span>
+                                                </div>
+                                            </div>
+                                        </td>
                                         <td>
                                             <div class="price-wrap">
                                                 <var class="harga">Rp.{{$c->inventories->harga}}</var>
-                                                <small class="text-muted ">total:Rp. <a href="" class="harga">{{$c->inventories->harga}}</a> </small>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="price-wrap">
+                                                <var class="harga">Rp.{{$c->inventories->harga}}</var>
                                             </div>
                                         </td>
                                         <td class="text-right d-none d-md-block">
@@ -63,24 +72,28 @@
                                                 @method('delete')
                                                 @csrf
                                                 <button type="submit" class="btn btn-md btn-danger btn-flat">
-                                                <i class="fas fa-trash"></i></button>
+                                                    <i class="fas fa-trash"></i></button>
                                             </form>
-                                        </tr>
+                                        </td>
+                                    </tr>
                                     @endforeach
+
+
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </aside>
                 <aside class="col-lg-3">
-                    <div class="card">
-                        <div class="card-body">
+                    <div class="card p-2">
+                        <div class="card-body mb-3">
                             <dl class="dlist-align">
                                 <dt>Total Pembelian:</dt>
                                 <dd class="text-right ml-3">$69.97</dd>
                             </dl>
-                            <a class="btn btn-sm btn-success d-lg-inline-block my-2 my-md-0 ms-md-3" href="/checkout">Lanjut Checkout</a>
                         </div>
+                        <a class="btn btn-success mb-3" href="/shop">Lanjut Berbelanja</a>
+                        <a class="btn btn-warning mb-3" href="/checkout">Lanjut Checkout</a>
                     </div>
                 </aside>
             </div>

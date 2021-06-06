@@ -1,22 +1,18 @@
 @extends('shoptamp.template')
 
 @section('content')
-<section class="content-header bg-light">
+<section class="content-header bg-while">
     <main class="container">
-        <div class="p-4 p-md-5 mt-4 mb-5 rounded bg-while">
-            <div class="col-md-6 px-0">
-                <h1 class="display-4 fst-italic">Detail Barang</h1>
-                <p class="lead my-3">Cek sebelum membeli produk lebihbaik!</p>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                    <li class="breadcrumb-item"><a href="/shop">Shop</a></li>
-                    <li class="breadcrumb-item"><a>Detail Barang</a></li>
-                </ol>
-            </div>
+        <div class="container-fluid">
+            <h1 class="display-4 fst-italic">Detail Barang</h1>
+            <p class="lead my-3">Cek sebelum membeli produk lebihbaik!</p>
+        
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                <li class="breadcrumb-item"><a href="/shop">Shop</a></li>
+                <li class="breadcrumb-item"><a>Detail Barang</a></li>
+            </ol>
         </div>
-
         <div class="row g-5 mb-5">
             <div class="col">
                 <div class="row">

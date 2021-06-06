@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdministratorsController;
 use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\CartsController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DevisionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
@@ -44,6 +45,7 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/cart', [CartsController::class, 'index']);
     Route::patch('/cart/{id}', [CartsController::class, 'store']);
     Route::delete('/cart/{id}', [CartsController::class, 'destroy']);
+    Route::get('/checkout', [CheckoutController::class, 'index']);
     Route::get('/profil', [ProfilesController::class, 'index']);
     Route::get('/user/{id}/edit', [ProfilesController::class, 'edit']);
     Route::patch('/user/{id}', [ProfilesController::class, 'update']);
@@ -58,7 +60,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/transaksi', [PagesController::class, 'transaction']);
 
     Route::get('/barang', [InventoryController::class, 'index']);
-    Route::get('/addcart/{id}', [InventoryController::class, 'create']);
+    Route::get('/barang/create', [InventoryController::class, 'create']);
     Route::get('/barang/{id}', [InventoryController::class, 'show']);
     Route::post('/barang', [InventoryController::class, 'store']);
     Route::delete('/barang/{id}', [InventoryController::class, 'destroy']);

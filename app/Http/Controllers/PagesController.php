@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carts;
+use App\Models\Inventories;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class PagesController extends Controller
 {
+
+    
     public function home()
     {
         return view('index');
@@ -19,15 +24,22 @@ class PagesController extends Controller
 
     public function index()
     {
-        return view('shops.home');
+        $user = Auth::user();
+        $cartcount = Carts::where('users_id', $user->id)->count();
+        $slide = Inventories::wherenotnull('photo1')->latest()->get();
+        $populer = Inventories::with('types', 'units')->oldest()->paginate(3);
+        return view('shops.home', ['cartcount' => $cartcount, 'slide' => $slide, 'populer' => $populer]);
     }
+
     public function shop()
     {
         return view('shops.shop');
     }
     public function blog()
     {
-        return view('shops.blog');
+        $user = Auth::user();
+        $cartcount = Carts::where('users_id', $user->id)->count();
+        return view('shops.blog', ['cartcount' => $cartcount]);
     }
 
 }

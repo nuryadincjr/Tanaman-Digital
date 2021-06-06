@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carts;
 use App\Models\Inventories;
 use App\Models\Types;
 use App\Models\Units;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use SebastianBergmann\CodeCoverage\Report\Xml\Unit;
 
 class ShopController extends Controller
@@ -17,11 +20,22 @@ class ShopController extends Controller
      */
     public function index()
     {
+        $users = Auth::user()->id;
+        $cartcount = Carts::where('users_id', $users)->count();
         $types = Types::get();
         $inventory = Inventories::with('types', 'units')->latest()->paginate(6);
         $populer = Inventories::with('types', 'units')->oldest()->paginate(6);
 
-        return view('shops.shop', ['inventory' => $inventory, 'populer' => $populer, 'types' => $types]); 
+
+        $slide = Inventories::wherenotnull('photo1')->latest()->get();
+
+        return view('shops.shop', [
+            'inventory' => $inventory, 
+            'populer' => $populer,
+            'types' => $types,
+            'cartcount' => $cartcount,
+            'slide' => $slide,
+            ]); 
     }
 
     /**
@@ -54,14 +68,16 @@ class ShopController extends Controller
      */
     public function show(Inventories $id)
     {
-        $stok = $id->stok;
+        $users = Auth::user()->id;
+        $cartcount = Carts::where('users_id', $users)->count();
 
+        $stok = $id->stok;
         if($stok>=0){
             $avilable = 'Tersedia';
         } else{
             $avilable = 'Tidak Tersedia';
         }
-        return view('shops.detail', ['inventory' => $id, 'avilable' => $avilable]);
+        return view('shops.detail', ['inventory' => $id, 'avilable' => $avilable, 'cartcount' => $cartcount]);
     }
 
     /**

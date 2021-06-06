@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carts;
 use App\Models\Users;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -17,8 +18,8 @@ class ProfilesController extends Controller
     public function index()
     {
         $user = Auth::user();
-
-        return view('shops.profil', ['users' => $user]);
+        $cartcount = Carts::where('users_id', $user->id)->count();
+        return view('shops.profil', ['users' => $user, 'cartcount' => $cartcount]);
     }
 
     /**
@@ -61,8 +62,9 @@ class ProfilesController extends Controller
      */
     public function edit(Users $id)
     {
-    
-        return view('shops.edit', ['users' => $id]);
+        $user = Auth::user();
+        $cartcount = Carts::where('users_id', $user->id)->count();
+        return view('shops.edit', ['users' => $id, 'cartcount' => $cartcount]);
     }
 
     /**
