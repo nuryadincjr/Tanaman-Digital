@@ -49,12 +49,7 @@
                             <div class="btn-group rounded-bottom" role="group" aria-label="Basic example">
                                 <a href="/detail/{{$i->id}}" alt="Detail" class="btn btn-sm btn-success"><i
                                         class="fas fa-eye"></i></a>
-                                <form action="/cart/{{$i->id}}" method="post" class="d-inline">
-                                    @method('patch')
-                                    @csrf
-                                    <button type="submit" class="btn btn-warning btn-sm">
-                                        <i class="fas fa-shopping-cart"></i></button>
-                                </form>
+                                        <livewire:cart-addeupdate-livewire :post="$i"/>      
                             </div>
                         </div>
                     </div>

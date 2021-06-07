@@ -39,6 +39,9 @@ Route::get('/home', [PagesController::class, 'index']);
 Route::get('/shop', [ShopController::class, 'index']);
 Route::get('/detail/{id}', [ShopController::class, 'show']);
 Route::get('/blog', [PagesController::class, 'blog']);
+Route::get('/about', [PagesController::class, 'about']);
+Route::get('/contact', [PagesController::class, 'contact']);
+Route::get('/kontak', [PagesController::class, 'kontak']);
 
 Route::middleware(['auth:web'])->group(function () {
     
@@ -49,6 +52,8 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/profil', [ProfilesController::class, 'index']);
     Route::get('/user/{id}/edit', [ProfilesController::class, 'edit']);
     Route::patch('/user/{id}', [ProfilesController::class, 'update']);
+
+    Route::get('/tes/{id}', [CartsController::class, 'tes'])->name('tes');
 
 });
 

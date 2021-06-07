@@ -46,16 +46,7 @@
                                         </td>
 
                                         <td class="cart-product-quantity" width="130px">
-                                            <div class="input-group quantity">
-                                                <div class="input-group-prepend decrement-btn" style="cursor: pointer;">
-                                                    <span class="input-group-text" wire:click.prevent="incresaseQty('{{$c->id}}')">-</span>
-                                                </div>
-                                                <input type="text" class="qty-input form-control" maxlength="3" max='10'
-                                                    value="1">
-                                                <div class="input-group-append increment-btn" style="cursor: pointer;">
-                                                    <span class="input-group-text" wire:click.prevent="desresaseQty('{{$c->id}}')">+</span>
-                                                </div>
-                                            </div>
+                                            <livewire:cart-livewire :post="$c"/>
                                         </td>
                                         <td>
                                             <div class="price-wrap">
@@ -64,11 +55,12 @@
                                         </td>
                                         <td>
                                             <div class="price-wrap">
-                                                <var class="harga">Rp.{{$c->inventories->harga}}</var>
-                                            </div>
+                                            <livewire:cartupdate-livewire :post="$c"/>                                           </div>
                                         </td>
                                         <td class="text-right d-none d-md-block">
-                                            <form action="/cart/{{$c->id}}" method="post" class="d-inline">
+
+
+                                        <form action="/cart/{{$c->id}}" method="post" class="d-inline">
                                                 @method('delete')
                                                 @csrf
                                                 <button type="submit" class="btn btn-md btn-danger btn-flat">
@@ -76,6 +68,7 @@
                                             </form>
                                         </td>
                                     </tr>
+                                    
                                     @endforeach
 
 
@@ -88,8 +81,9 @@
                     <div class="card p-2">
                         <div class="card-body mb-3">
                             <dl class="dlist-align">
-                                <dt>Total Pembelian:</dt>
-                                <dd class="text-right ml-3">$69.97</dd>
+                                <dt>Total Pembelian: </dt>
+                                <livewire:cart-pieceupdate-livewire/> 
+                                <!-- <dd class="text-right ml-3">$69.97</dd> -->
                             </dl>
                         </div>
                         <a class="btn btn-success mb-3" href="/shop">Lanjut Berbelanja</a>

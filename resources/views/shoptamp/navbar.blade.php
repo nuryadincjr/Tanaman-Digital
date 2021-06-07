@@ -21,6 +21,9 @@
         <li class="nav-item">
           <a class="nav-link" href="/about">About</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/kontak">Kontak</a>
+        </li>
       </ul>
       @if (auth()->user()==true)
       <ul class="navbar-nav flex-row flex-wrap ms-md-auto justify-content-end">
@@ -44,7 +47,6 @@
           <ul class="dropdown-menu bg-dark dropdown-menu-end dropdown-menu-lg-start" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item text-white" href="/profil">Profil</a></li>
             <li><a class="dropdown-item text-white" href="/trackorder">Track Order</a></li>
-            <li><a class="dropdown-item text-white" href="/settings">Seting</a></li>
             <li><a class="dropdown-item text-white" href="/logout">Logout</a></li>
           </ul>
         </li>

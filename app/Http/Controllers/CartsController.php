@@ -107,36 +107,27 @@ class CartsController extends Controller
     }
 
 
-    public function incresaseQty($id)
-    {
-        $inventories = Carts::get($id);
-        $qty = $inventories->quntity + 1;
-        Carts::update($id, $qty);
-    }
+    // public function incresaseQty($id)
+    // {
+    //     $inventories = Carts::get($id);
+    //     $qty = $inventories->quntity + 1;
+    //     Carts::update($id, $qty);
+    // }
     
-    public function desresaseQty($id)
-    {
-        $inventories = Carts::get($id);
-        $qty = $inventories->quntity - 1;
-        Carts::update($id, $qty);
-    }
+    // public function desresaseQty($id)
+    // {
+    //     $inventories = Carts::get($id);
+    //     $qty = $inventories->quntity - 1;
+    //     Carts::update($id, $qty);
+    // }
 
     public function tes($id)  {
 
-        dd($id);
         $users = Auth::user()->id;
-        $users = DB::table('carts')->where([
-            ['users_id', '=', $users],
-            ['inventories_id', '=', $id],
-        ])->first();
-        
 
-        if($users == null){
-            Carts::create([
-                'quntity' => 1,
-                'users_id' => $users,
-                'inventories_id' => $id,
+        Carts::where('id',' 30')
+            ->update([
+                'quntity' => 222,
             ]);
-        }
     }
 }
