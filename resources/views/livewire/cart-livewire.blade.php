@@ -1,17 +1,20 @@
 <div>
-    <div class="input-group quantity">
-        <div wire:click="decQty({{$post->id}})" class="input-group-prepend decrement-btn" style="cursor: pointer;">
-            <span class="input-group-text">-</span>
+    <div class="input-group input-group-sm">
+        <div wire:click="decQty({{$post->id}})" class="input-group-sm" id="addon-wrapping" style="cursor: pointer;">
+            <span class="input-group-text text-white bg-danger">-</span>
         </div>
-        <input type="text" class="qty-input form-control" maxlength="3" max='10' 
+        <input type="text" class="form-control"
+        
         @if ($dataqty !=null)
             value="{{$dataqty}}" 
         @else 
             value="{{$post->quntity}}" 
-        @endif>
-
-        <div wire:click="incQty({{$post->id}})" class="input-group-append increment-btn" style="cursor: pointer;">
-            <span class="input-group-text">+</span>
+        @endif
+        
+        aria-describedby="addon-wrapping">
+        <div wire:click="incQty({{$post->id}})" class="input-group-sm" id="addon-wrapping" style="cursor: pointer;">
+            <span class="input-group-text text-white bg-success">+</span>
         </div>
+
     </div>
 </div>

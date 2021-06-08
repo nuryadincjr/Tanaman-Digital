@@ -32,7 +32,7 @@
                     </svg>
                 </div>
                 <div>
-                    <h2>Featured title</h2>
+                    <h2>Mudah</h2>
                     <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another
                         sentence and probably just keep going until we run out of words.</p>
                     <a href="#" class="btn btn-primary">
@@ -47,7 +47,7 @@
                     </svg>
                 </div>
                 <div>
-                    <h2>Featured title</h2>
+                    <h2>Cepat</h2>
                     <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another
                         sentence and probably just keep going until we run out of words.</p>
                     <a href="#" class="btn btn-primary">
@@ -62,7 +62,7 @@
                     </svg>
                 </div>
                 <div>
-                    <h2>Featured title</h2>
+                    <h2>Aman</h2>
                     <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another
                         sentence and probably just keep going until we run out of words.</p>
                     <a href="#" class="btn btn-primary">

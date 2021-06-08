@@ -39,5 +39,6 @@ class CartAddeupdateLivewire extends Component
                 'quntity' =>$users->quntity+1,
             ]);
         }
+        $this->emit('showdata');
     }
 }

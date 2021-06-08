@@ -4,6 +4,7 @@ use App\Http\Controllers\AdministratorsController;
 use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\CartsController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CityPaysController;
 use App\Http\Controllers\DevisionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\TypesController;
 use App\Http\Controllers\UnitsController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\ShopController;
 
@@ -49,11 +51,13 @@ Route::middleware(['auth:web'])->group(function () {
     Route::patch('/cart/{id}', [CartsController::class, 'store']);
     Route::delete('/cart/{id}', [CartsController::class, 'destroy']);
     Route::get('/checkout', [CheckoutController::class, 'index']);
+    
+    Route::patch('/order', [OrdersController::class, 'store']);
+    
     Route::get('/profil', [ProfilesController::class, 'index']);
     Route::get('/user/{id}/edit', [ProfilesController::class, 'edit']);
     Route::patch('/user/{id}', [ProfilesController::class, 'update']);
 
-    Route::get('/tes/{id}', [CartsController::class, 'tes'])->name('tes');
 
 });
 
@@ -62,7 +66,15 @@ Route::middleware(['auth:web'])->group(function () {
 Route::middleware(['auth:admin'])->group(function () {
     
     Route::get('/', [PagesController::class, 'home']);
+    
     Route::get('/transaksi', [PagesController::class, 'transaction']);
+
+    Route::get('/kota', [CityPaysController::class, 'index']);
+    Route::get('/kota/create', [CityPaysController::class, 'create']);
+    Route::post('/kota', [CityPaysController::class, 'store']);
+    Route::delete('/kota/{id}', [CityPaysController::class, 'destroy']);
+    Route::get('/kota/{id}/edit', [CityPaysController::class, 'edit']);
+    Route::patch('/kota/{id}', [CityPaysController::class, 'update']);
 
     Route::get('/barang', [InventoryController::class, 'index']);
     Route::get('/barang/create', [InventoryController::class, 'create']);

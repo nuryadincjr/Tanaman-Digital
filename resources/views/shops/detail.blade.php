@@ -63,16 +63,8 @@
                 </div>
 
                 <div>
-                    <form action="/cart/{{$inventory->id}}" method="post" class="d-inline">
-                        @method('patch')
-                        @csrf
-                        <button type="submit" class="btn btn-md btn-warning btn-flat">
-                            <i class="fas fa-shopping-cart"></i></button>
-                    </form>
-
-                    <div class="btn btn-md btn-danger btn-flat">
-                        <i class="fas fa-heart fa-lg mr-2"></i> Add to Wishlist
-                    </div>
+                <h4>Tambah Ke Keranjang</h4>
+                    <livewire:cart-addeupdate-livewire :post="$inventory"/> 
                 </div>
 
                 <div class="mt-4 product-share mb-5">

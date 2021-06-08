@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carts;
+use App\Models\Citypays;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,9 +21,9 @@ class CheckoutController extends Controller
 
         $users = Auth::user()->id;
         $user = Auth::user();
-        $cartcount = Carts::where('users_id', $users)->count();
+        $ongkir = Citypays::get()->sortBy('kota');
         $carts = Carts::with('users', 'inventories.types', 'inventories.units')->where('users_id',$users)->get();
-        return view('shops.checkout', ['carts' => $carts, 'cartcount' => $cartcount, 'users' => $user]);
+        return view('shops.checkout', ['carts' => $carts, 'users' => $user, 'ongkir'=> $ongkir]);
     }
 
     /**

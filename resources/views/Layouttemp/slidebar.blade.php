@@ -34,11 +34,30 @@
                 <p>Dashboard</p>
             </a>
         </li>
+       
         <li class="nav-item">
-            <a href="{{url('/transaksi')}}" class="nav-link">
-                <i class="nav-icon fas fa-file"></i>
-                <p>Transaksi</p>
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-table"></i>
+                <p>
+                    Data Transaksi
+                    <i class="right fas fa-angle-left"></i>
+                </p>
             </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{url('/transaksi')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Data Pesanan</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{url('/kota')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Daftar Kota</p>
+                    </a>
+                </li>
+
+            </ul>
         </li>
         <li class="nav-item">
             <a href="#" class="nav-link">

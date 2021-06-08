@@ -38,23 +38,18 @@ class PagesController extends Controller
 
     public function blog()
     {
-        $user = Auth::user();
-        $cartcount = Carts::where('users_id', $user->id)->count();
-        return view('shops.blog', ['cartcount' => $cartcount]);
+    
+        return view('shops.blog');
     }
 
     public function about()
     {
-        $user = Auth::user();
-        $cartcount = Carts::where('users_id', $user->id)->count();
-        return view('shops.about', ['cartcount' => $cartcount]);
+        return view('shops.about');
     }
 
     public function kontak()
     {
-        $user = Auth::user();
-        $cartcount = Carts::where('users_id', $user->id)->count();
-        return view('shops.kontak', ['cartcount' => $cartcount]);
+        return view('shops.kontak');
     }
 
 }

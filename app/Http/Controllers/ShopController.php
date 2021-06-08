@@ -20,8 +20,6 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $users = Auth::user()->id;
-        $cartcount = Carts::where('users_id', $users)->count();
         $types = Types::get();
         $inventory = Inventories::with('types', 'units')->latest()->paginate(6);
         $populer = Inventories::with('types', 'units')->oldest()->paginate(6);
@@ -33,7 +31,6 @@ class ShopController extends Controller
             'inventory' => $inventory, 
             'populer' => $populer,
             'types' => $types,
-            'cartcount' => $cartcount,
             'slide' => $slide,
             ]); 
     }
@@ -68,16 +65,13 @@ class ShopController extends Controller
      */
     public function show(Inventories $id)
     {
-        $users = Auth::user()->id;
-        $cartcount = Carts::where('users_id', $users)->count();
-
         $stok = $id->stok;
         if($stok>=0){
             $avilable = 'Tersedia';
         } else{
             $avilable = 'Tidak Tersedia';
         }
-        return view('shops.detail', ['inventory' => $id, 'avilable' => $avilable, 'cartcount' => $cartcount]);
+        return view('shops.detail', ['inventory' => $id, 'avilable' => $avilable]);
     }
 
     /**

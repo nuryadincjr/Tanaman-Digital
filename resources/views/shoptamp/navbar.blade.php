@@ -29,11 +29,7 @@
       <ul class="navbar-nav flex-row flex-wrap ms-md-auto justify-content-end">
         <div class="notification-icon">
           <span class="glyphicon glyphicon-envelope"></span>
-          @if ($cartcount>=100)
-          <span class="badge">100+</span>
-          @else
-          <span class="badge">{{$cartcount}}</span>
-          @endif
+          <livewire:cart-notif-livewire/>   
         </div>
         <li class="nav-item col-6 col-md-auto">
           <a class="nav-link" href="/cart"><i class="bi bi-cart-fill"></i>

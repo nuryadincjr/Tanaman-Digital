@@ -19,9 +19,9 @@ class CartsController extends Controller
     {
 
         $users = Auth::user()->id;
-        $cartcount = Carts::where('users_id', $users)->count();
+        
         $carts = Carts::with('users', 'inventories.types', 'inventories.units')->where('users_id',$users)->get();
-        return view('shops.chart', ['carts' => $carts, 'cartcount' => $cartcount]);
+        return view('shops.chart', ['carts' => $carts]);
     }
 
     /**
@@ -107,27 +107,13 @@ class CartsController extends Controller
     }
 
 
-    // public function incresaseQty($id)
-    // {
-    //     $inventories = Carts::get($id);
-    //     $qty = $inventories->quntity + 1;
-    //     Carts::update($id, $qty);
+    // public function tes($id)  {
+
+    //     $users = Auth::user()->id;
+
+    //     Carts::where('id',' 30')
+    //         ->update([
+    //             'quntity' => 222,
+    //         ]);
     // }
-    
-    // public function desresaseQty($id)
-    // {
-    //     $inventories = Carts::get($id);
-    //     $qty = $inventories->quntity - 1;
-    //     Carts::update($id, $qty);
-    // }
-
-    public function tes($id)  {
-
-        $users = Auth::user()->id;
-
-        Carts::where('id',' 30')
-            ->update([
-                'quntity' => 222,
-            ]);
-    }
 }

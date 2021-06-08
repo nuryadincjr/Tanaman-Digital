@@ -13,8 +13,8 @@
                 most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system,
                 extensive prebuilt components, and powerful JavaScript plugins.</p>
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Belanja</button>
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4">Regisrasi</button>
+                <a href="/shop" type="button" class="btn btn-primary btn-lg px-4 gap-3">Belanja</a>
+                <a  href="/regisrasi" type="button" class="btn btn-outline-secondary btn-lg px-4">Regisrasi</a>
             </div>
         </div>
     </div>
@@ -29,7 +29,7 @@
           <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"></use></svg>
         </div>
         <div>
-          <h2>Featured title</h2>
+          <h2>Mudah</h2>
           <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
           <a href="#" class="btn btn-primary">
             Primary button
@@ -41,7 +41,7 @@
           <svg class="bi" width="1em" height="1em"><use xlink:href="#cpu-fill"></use></svg>
         </div>
         <div>
-          <h2>Featured title</h2>
+          <h2>Cepat</h2>
           <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
           <a href="#" class="btn btn-primary">
             Primary button
@@ -53,7 +53,7 @@
           <svg class="bi" width="1em" height="1em"><use xlink:href="#tools"></use></svg>
         </div>
         <div>
-          <h2>Featured title</h2>
+          <h2>Aman</h2>
           <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
           <a href="#" class="btn btn-primary">
             Primary button

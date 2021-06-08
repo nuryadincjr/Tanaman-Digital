@@ -11,20 +11,22 @@
                 <li class="breadcrumb-item"><a href="/cart">Cart</a></li>
                 <li class="breadcrumb-item"><a>Checkout</a></li>
             </ol>
-            <h1>Detail Pesanan</h1>
+            <h2>Detail Pesanan</h2>
         </div>
-        <div class="row">
-            <aside class="col-lg-9">
-                <div class="card">
-                    <div class="table-responsive">
-                        <table class="table table-borderless table-shopping-cart">
+
+        <form method="post" action="/order" enctype="multipart/form-data">
+            @method('patch')
+            @csrf
+            <div class="row g-5">
+                <div class="col-md-8">
+                    <div class="card mb-3">
+                        <table class="table table-borderless">
                             <thead class="text-muted">
                                 <tr class="small text-uppercase">
-                                    <th scope="col">Barang</th>
-                                    <th scope="col" width="120">Kuantitas</th>
+                                    <th scope="col" width="120">Barang</th>
+                                    <th scope="col" width="50">Kuantitas</th>
                                     <th scope="col" width="120">Harga</th>
                                     <th scope="col" width="120">Sub total</th>
-                                    <th scope="col" class="text-right d-none d-md-block" width="200"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,124 +45,111 @@
                                             </figcaption>
                                         </figure>
                                     </td>
-
-                                    <td class="cart-product-quantity" width="130px">
-                                        <div class="price-wrap">
-                                            <var class="harga">{{$c->quntity}}</var>
-                                        </div>
+                                    <td>
+                                        {{$c->quntity}}
                                     </td>
                                     <td>
-                                        <div class="price-wrap">
-                                            <var class="harga">Rp.{{$c->inventories->harga}}</var>
-                                        </div>
+                                        <var class="harga">Rp.{{$c->inventories->harga}}</var>
                                     </td>
                                     <td>
-                                        <div class="price-wrap">
-                                            <var class="harga">Rp.{{$c->inventories->harga}}</var>
-                                        </div>
+                                        <livewire:cartupdate-livewire :post="$c" />
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
+
                         </table>
+
+                    </div>
+                    <h2 class="mb-3">Alamat Pembayaran</h2>
+                    <form class="needs-validation" novalidate>
+                        <div class="row g-3">
+                            <div class="form-group">
+                                <label for="nama">Nama</label>
+                                <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama"
+                                    value="{{$users->nama}}" placeholder="Masukan nama pengguna">
+                                @error('nama')<div class="invalid-feedback">{{$message}}</div>@enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                                    name="email" value="{{$users->email}}" placeholder="Masukan email pengguna">
+                                @error('email')<div class="invalid-feedback">{{$message}}</div>@enderror
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="telpon">Telpon</label>
+                                <input type="text" class="form-control @error('telpon') is-invalid @enderror" id="telpon"
+                                    name="telpon" value="{{$users->telpon}}" placeholder="Masukan telpon pengguna">
+                                @error('telpon')<div class="invalid-feedback">{{$message}}</div>@enderror
+                            </div>
+
+                            <div class="col-12">
+                                <label for="alamat">Alamat Penagihan</label>
+                                <textarea class="form-control @error('alamat') is-invalid @enderror" id="alamat" name="alamat" 
+                                rows="2" placeholder="Masukan alamat rumah">{{$users->alamat}}</textarea>
+                                @error('alamat')<div class="invalid-feedback">{{$message}}</div>@enderror
+                            </div>
+
+                            <div class="col-12">
+                                <label for="country" class="form-label">Kota Tujuan - Ongkos Korim</label>
+                                <select class="form-select" id="country" name="ongkir">
+                                    @foreach ($ongkir as $o)
+                                    <option value="{{$o->id}}">
+                                        <p>{{$o->kota}} - Rp.{{$o->harga}}</p>
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <h4 class="mb-3">Metode Pembayaran</h4>
+
+                        <div class="my-3">
+                            <div class="form-check">
+                                <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked
+                                    required>
+                                <label class="form-check-label" for="credit">Teransver Bank</label>
+                            </div>
+                            <div class="form-check">
+                                <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+                                <label class="form-check-label" for="debit">Bayar di Tempat</label>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+                    </form>
+
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card p-2 position-sticky" style="top: 2rem;">
+                        <div class="card-body mb-3">
+                            <dl class="dlist-align">
+                                <dt>Total Pembelian: </dt>
+                                <livewire:cart-pieceupdate-livewire />
+                            </dl>
+                            <dl class="dlist-align">
+                                <dt>Ungkos Kirim: </dt>
+                                <livewire:cart-pieceupdate-livewire />
+                            </dl>
+                            <dl class="dlist-align">
+                                <dt>Total Pembayaran: </dt>
+                                <livewire:cart-pieceupdate-livewire />
+                            </dl>
+                        </div>
+                        <a class="btn btn-success mb-3" href="/shop">Lanjut Berbelanja</a>
+                        <button type="submit" class="btn btn-warning mb-3" href="/bayar">Lanjut Pembayaran</button>
                     </div>
                 </div>
 
-                <h4 class="mb-3">Alamat Pembayaran</h4>
-                <form class="needs-validation" novalidate>
-                    <div class="row g-3">
-                        <div class="col-sm-6">
-                            <label for="firstName" class="form-label">Nama Lengkap</label>
-                            <input disabled type="text" class="form-control" id="firstName"
-                                placeholder="{{$users->nama}}" value="" required>
-                            <div class="invalid-feedback">
+            </div>
 
-                            </div>
-                        </div>
+        </form>
 
-                        <div class="col-sm-6">
-                            <label for="lastName" class="form-label">Telpon</label>
-                            <input disabled type="text" class="form-control" id="lastName"
-                                placeholder="{{$users->telpon}}" value="" required>
-                            <div class="invalid-feedback">
-
-                            </div>
-                        </div>
-
-                        <div class="col-12">
-                            <label for="email" class="form-label">Email <span
-                                    class="text-muted">(Optional)</span></label>
-                            <input disabled type="email" class="form-control" id="email"
-                                placeholder="{{$users->email}}">
-                            <div class="invalid-feedback">
-                                Please enter a valid email address for shipping updates.
-                            </div>
-                        </div>
-
-                        <div class="col-12">
-                            <label for="address" class="form-label">Alamat</label>
-                            <input type="text" class="form-control" id="address"
-                                placeholder="Alamat Penagihan dan pengantaran" required>
-                            <div class="invalid-feedback">
-                                Please enter your shipping address.
-                            </div>
-                        </div>
-
-                        <div class="col-md-5">
-                            <label for="country" class="form-label">Kota Tujuan</label>
-                            <select class="form-select" id="country" required>
-                                <option value="">Choose...</option>
-                                <option>United States</option>
-                            </select>
-                            <div class="invalid-feedback">
-                                Please select a valid country.
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <label for="zip" class="form-label">Ongkos Kirim</label>
-                            <input type="text" class="form-control" id="zip" placeholder="" required>
-                            <div class="invalid-feedback">
-                                Rp.0
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr class="my-4">
-
-                    <h4 class="mb-3">Metode Pembayaran</h4>
-
-                    <div class="my-3">
-                        <div class="form-check">
-                            <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked
-                                required>
-                            <label class="form-check-label" for="credit">Teransver Bank</label>
-                        </div>
-                        <div class="form-check">
-                            <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
-                            <label class="form-check-label" for="debit">Bayar di Tempat</label>
-                        </div>
-                    </div>
-
-                    <hr class="my-4">
-
-                    <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
-                </form>
-            </aside>
-            <aside class="col-lg-3 ">
-                <div class="card p-2">
-                    <div class="card-body mb-3">
-                        <dl class="dlist-align">
-                            <dt>Total Pembelian:</dt>
-                            <dd class="text-right ml-3">$69.97</dd>
-                        </dl>
-                    </div>
-                    <a class="btn btn-success mb-3" href="/shop">Lanjut Berbelanja</a>
-                    <a class="btn btn-warning mb-3" href="/detailpesanan">Lanjut Pembayaran</a>
-                </div>
-            </aside>
-        </div>
-        </div>
     </main>
 </section>
 @endsection

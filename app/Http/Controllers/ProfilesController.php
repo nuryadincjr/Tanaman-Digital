@@ -63,8 +63,8 @@ class ProfilesController extends Controller
     public function edit(Users $id)
     {
         $user = Auth::user();
-        $cartcount = Carts::where('users_id', $user->id)->count();
-        return view('shops.edit', ['users' => $id, 'cartcount' => $cartcount]);
+       
+        return view('shops.edit', ['users' => $id]);
     }
 
     /**
